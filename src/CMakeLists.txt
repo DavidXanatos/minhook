@@ -7,5 +7,7 @@ add_library(MinHook STATIC ${SRCS})
 
 # libMinHook.dll.a
 add_library(MinHook_dll SHARED ${SRCS} MinHook.rc MinHook.def)
-set_target_properties(MinHook_dll PROPERTIES PREFIX "")
+if(NOT MSVC)
+    set_target_properties(MinHook_dll PROPERTIES PREFIX "")
+endif()
 set_target_properties(MinHook_dll PROPERTIES OUTPUT_NAME "MinHook")

@@ -51,3 +51,5 @@ cmake_install.cmake
 /*.sln
 /*.vcproj
 /*.vcxproj
+/src/*.vcproj
+/src/*.vcxproj
