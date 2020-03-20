@@ -463,7 +463,7 @@ static VOID LeaveSpinLock(VOID)
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_Initialize(VOID)
+MH_API MH_STATUS WINAPI MH_Initialize(VOID)
 {
     MH_STATUS status = MH_OK;
 
@@ -493,7 +493,7 @@ MH_STATUS WINAPI MH_Initialize(VOID)
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_Uninitialize(VOID)
+MH_API MH_STATUS WINAPI MH_Uninitialize(VOID)
 {
     MH_STATUS status = MH_OK;
 
@@ -532,7 +532,7 @@ MH_STATUS WINAPI MH_Uninitialize(VOID)
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOriginal)
+MH_API MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOriginal)
 {
     MH_STATUS status = MH_OK;
 
@@ -630,7 +630,7 @@ MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOrigina
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_RemoveHook(LPVOID pTarget)
+MH_API MH_STATUS WINAPI MH_RemoveHook(LPVOID pTarget)
 {
     MH_STATUS status = MH_OK;
 
@@ -721,13 +721,13 @@ static MH_STATUS EnableHook(LPVOID pTarget, BOOL enable)
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_EnableHook(LPVOID pTarget)
+MH_API MH_STATUS WINAPI MH_EnableHook(LPVOID pTarget)
 {
     return EnableHook(pTarget, TRUE);
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_DisableHook(LPVOID pTarget)
+MH_API MH_STATUS WINAPI MH_DisableHook(LPVOID pTarget)
 {
     return EnableHook(pTarget, FALSE);
 }
@@ -771,19 +771,19 @@ static MH_STATUS QueueHook(LPVOID pTarget, BOOL queueEnable)
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_QueueEnableHook(LPVOID pTarget)
+MH_API MH_STATUS WINAPI MH_QueueEnableHook(LPVOID pTarget)
 {
     return QueueHook(pTarget, TRUE);
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_QueueDisableHook(LPVOID pTarget)
+MH_API MH_STATUS WINAPI MH_QueueDisableHook(LPVOID pTarget)
 {
     return QueueHook(pTarget, FALSE);
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_ApplyQueued(VOID)
+MH_API MH_STATUS WINAPI MH_ApplyQueued(VOID)
 {
     MH_STATUS status = MH_OK;
     UINT i, first = INVALID_HOOK_POS;
@@ -831,7 +831,7 @@ MH_STATUS WINAPI MH_ApplyQueued(VOID)
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_CreateHookApiEx(
+MH_API MH_STATUS WINAPI MH_CreateHookApiEx(
     LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour,
     LPVOID *ppOriginal, LPVOID *ppTarget)
 {
@@ -853,14 +853,14 @@ MH_STATUS WINAPI MH_CreateHookApiEx(
 }
 
 //-------------------------------------------------------------------------
-MH_STATUS WINAPI MH_CreateHookApi(
+MH_API MH_STATUS WINAPI MH_CreateHookApi(
     LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal)
 {
    return MH_CreateHookApiEx(pszModule, pszProcName, pDetour, ppOriginal, NULL);
 }
 
 //-------------------------------------------------------------------------
-const char * WINAPI MH_StatusToString(MH_STATUS status)
+MH_API LPCSTR WINAPI MH_StatusToString(MH_STATUS status)
 {
 #define MH_ST2STR(x)    \
     case x:             \
