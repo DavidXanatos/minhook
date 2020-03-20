@@ -7,7 +7,7 @@
 cmake_minimum_required(VERSION 2.4)
 
 # project name and language
-project(MinHook C CXX RC)
+project(MinHook C RC)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # using Clang
