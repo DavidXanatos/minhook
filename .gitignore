@@ -29,6 +29,7 @@ CMakeFiles
 Debug*/
 Release*/
 x64/
+Win32/
 Win64/
 build/
 cmake_install.cmake
