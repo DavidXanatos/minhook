@@ -9,6 +9,11 @@ cmake_minimum_required(VERSION 2.4)
 # project name and language
 project(MinHook C RC)
 
+# set output directory (build/)
+set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # using Clang
     set(CMAKE_C_FLAGS "-static -masm=intel")
@@ -35,6 +40,6 @@ endif()
 
 ##############################################################################
 
-subdirs(src)
+subdirs(src samples)
 
 ##############################################################################

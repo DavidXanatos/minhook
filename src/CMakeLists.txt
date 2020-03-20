@@ -1,5 +1,3 @@
-include_directories(. ../include)
-
 set(SRCS buffer.c hook.c trampoline.c hde/hde32.c hde/hde64.c)
 
 # libMinHook.a
