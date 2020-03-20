@@ -1,7 +1,7 @@
 # sample.exe
 add_executable(sample sample.c)
 
-if(TRUE)
+if(1)
     # use static library
     target_link_libraries(sample PRIVATE MinHook_static)
 else()
