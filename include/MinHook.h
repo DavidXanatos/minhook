@@ -121,7 +121,7 @@ extern "C" {
     //                    This parameter can be NULL.
     MH_API MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOriginal);
 
-#define MH_CreateHookDx(pTarget, pDetour, ppOriginal) \
+#define MH_CreateHookCast(pTarget, pDetour, ppOriginal) \
     MH_CreateHook((pTarget), (pDetour), (LPVOID *)(ppOriginal))
 
     // Creates a Hook for the specified API function, in disabled state.
@@ -137,6 +137,9 @@ extern "C" {
     //                    This parameter can be NULL.
     MH_API MH_STATUS WINAPI MH_CreateHookApi(
         LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal);
+
+#define MH_CreateHookApiCast(pszModule, pszProcName, pDetour, ppOriginal) \
+    MH_CreateHookApi((pszModule), (pszProcName), (pDetour), (LPVOID *)(ppOriginal))
 
     // Creates a Hook for the specified API function, in disabled state.
     // Parameters:
@@ -155,7 +158,7 @@ extern "C" {
     MH_API MH_STATUS WINAPI MH_CreateHookApiEx(
         LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal, LPVOID *ppTarget);
 
-#define MH_CreateHookApiDx(pszModule, pszProcName, pDetour, ppOriginal, ppTarget) \
+#define MH_CreateHookApiExCast(pszModule, pszProcName, pDetour, ppOriginal, ppTarget) \
     MH_CreateHookApiEx((pszModule), (pszProcName), (pDetour), (LPVOID *)(ppOriginal), (LPVOID *)(ppTarget))
 
     // Removes an already created hook.

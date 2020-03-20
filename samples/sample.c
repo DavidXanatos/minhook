@@ -18,10 +18,17 @@ int main(void)
         return EXIT_FAILURE;
     }
 
-    if (MH_CreateHookDx(&MessageBoxW, &DetourMessageBoxW, &fpMessageBoxW) != MH_OK)
+#if 1
+    if (MH_CreateHookApiCast(L"user32", "MessageBoxW", DetourMessageBoxW, &fpMessageBoxW) != MH_OK)
     {
         return EXIT_FAILURE;
     }
+#else
+    if (MH_CreateHookCast(&MessageBoxW, &DetourMessageBoxW, &fpMessageBoxW) != MH_OK)
+    {
+        return EXIT_FAILURE;
+    }
+#endif
 
     if (MH_EnableHook(&MessageBoxW) != MH_OK)
     {
