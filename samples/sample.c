@@ -30,6 +30,8 @@ int main(void)
     }
 #endif
 
+    MessageBoxW(NULL, L"Not hooked...", L"MinHook Sample", MB_OK);
+
     if (MH_EnableHook(&MessageBoxW) != MH_OK)
     {
         return EXIT_FAILURE;
