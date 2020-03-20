@@ -1,6 +1,6 @@
 /* MinHook Sample */
 #include <windows.h>
-#include "MinHook.h"
+#include "../include/MinHook.h"
 
 typedef int (WINAPI *MESSAGEBOXW)(HWND, LPCWSTR, LPCWSTR, UINT);
 
@@ -18,7 +18,7 @@ int main(void)
         return EXIT_FAILURE;
     }
 
-    if (MH_CreateHookApiEx(L"user32", "MessageBoxW", &DetourMessageBoxW, &fpMessageBoxW) != MH_OK)
+    if (MH_CreateHookDx(&MessageBoxW, &DetourMessageBoxW, &fpMessageBoxW) != MH_OK)
     {
         return EXIT_FAILURE;
     }

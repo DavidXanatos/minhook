@@ -1,6 +1,7 @@
 /*
  *  MinHook - The Minimalistic API Hooking Library for x64/x86
  *  Copyright (C) 2009-2017 Tsuda Kageyu.
+ *  Copyright (C) 2020 Katayama Hirofumi MZ.
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -110,6 +111,9 @@ extern "C" {
     //                    This parameter can be NULL.
     MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOriginal);
 
+#define MH_CreateHookDx(pTarget, pDetour, ppOriginal) \
+    MH_CreateHook((pTarget), (pDetour), (LPVOID *)(ppOriginal))
+
     // Creates a Hook for the specified API function, in disabled state.
     // Parameters:
     //   pszModule  [in]  A pointer to the loaded module name which contains the
@@ -140,6 +144,9 @@ extern "C" {
     //                    This parameter can be NULL.
     MH_STATUS WINAPI MH_CreateHookApiEx(
         LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal, LPVOID *ppTarget);
+
+#define MH_CreateHookApiDx(pszModule, pszProcName, pDetour, ppOriginal, ppTarget) \
+    MH_CreateHookApiEx((pszModule), (pszProcName), (pDetour), (LPVOID *)(ppOriginal), (LPVOID *)(ppTarget))
 
     // Removes an already created hook.
     // Parameters:

@@ -48,8 +48,10 @@ CMakeFiles
 cmake_install.cmake
 /Makefile
 /src/Makefile
+/samples/Makefile
 /*.sln
 /*.vcproj
 /*.vcxproj
 /src/*.vcproj
 /src/*.vcxproj
+build/
