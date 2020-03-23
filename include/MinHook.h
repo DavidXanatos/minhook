@@ -122,7 +122,7 @@ extern "C" {
     MH_API MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOriginal);
 
 #define MH_CreateHookCast(pTarget, pDetour, ppOriginal) \
-    MH_CreateHook((pTarget), (pDetour), (LPVOID *)(ppOriginal))
+    MH_CreateHook((LPVOID)(pTarget), (LPVOID)(pDetour), (LPVOID *)(ppOriginal))
 
     // Creates a Hook for the specified API function, in disabled state.
     // Parameters:
@@ -139,7 +139,7 @@ extern "C" {
         LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal);
 
 #define MH_CreateHookApiCast(pszModule, pszProcName, pDetour, ppOriginal) \
-    MH_CreateHookApi((pszModule), (pszProcName), (pDetour), (LPVOID *)(ppOriginal))
+    MH_CreateHookApi((pszModule), (pszProcName), (LPVOID)(pDetour), (LPVOID *)(ppOriginal))
 
     // Creates a Hook for the specified API function, in disabled state.
     // Parameters:
@@ -165,6 +165,7 @@ extern "C" {
     // Parameters:
     //   pTarget [in] A pointer to the target function.
     MH_API MH_STATUS WINAPI MH_RemoveHook(LPVOID pTarget);
+#define MH_RemoveHookCast(pTarget) MH_RemoveHook((LPVOID)(pTarget))
 
     // Enables an already created hook.
     // Parameters:
@@ -172,6 +173,7 @@ extern "C" {
     //                If this parameter is MH_ALL_HOOKS, all created hooks are
     //                enabled in one go.
     MH_API MH_STATUS WINAPI MH_EnableHook(LPVOID pTarget);
+#define MH_EnableHookCast(pTarget) MH_EnableHook((LPVOID)(pTarget))
 
     // Disables an already created hook.
     // Parameters:
@@ -179,6 +181,7 @@ extern "C" {
     //                If this parameter is MH_ALL_HOOKS, all created hooks are
     //                disabled in one go.
     MH_API MH_STATUS WINAPI MH_DisableHook(LPVOID pTarget);
+#define MH_DisableHookCast(pTarget) MH_DisableHook((LPVOID)(pTarget))
 
     // Queues to enable an already created hook.
     // Parameters:
